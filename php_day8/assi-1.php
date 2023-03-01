@@ -5,7 +5,7 @@
 class RssFeed {
     private $url;
 
-    public function __construct($url) {
+    public function RssFeed($url) {
         $this->url = $url;
     }
 
