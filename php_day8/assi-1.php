@@ -21,6 +21,9 @@
         margin-bottom:50px;
         max-height: 700px;
      }
+     .desimg {
+        font-size:28px;
+     }
 
 </style>
 </head>

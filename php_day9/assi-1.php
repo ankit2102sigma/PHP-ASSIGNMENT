@@ -1,9 +1,13 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Upload PHP File</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css</title>
   <style>
-    label {
+       label {
       display: inline-block;
       padding: 8px 12px;
       background-color: #4CAF50;
@@ -11,15 +15,32 @@
       border-radius: 4px;
       cursor: pointer;
     }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 1000px;
+      margin:30px auto;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    h1{
+      text-align:center;
+    }
   </style>
 </head>
 <body>
-  <h1>Upload PHP File</h1>
-  <form action="" method="POST" enctype="multipart/form-data">
-    <input type="file" id="php-file" name="php-file" accept=".csv" />
-    <input type="submit" name="submit" value="Upload" />
-  </form>
-
+  
+</body>
+</html>
 <?php
 
 class FileUploader
@@ -35,7 +56,9 @@ class FileUploader
 
     public function displayTable()
     {
-        echo '<table border="1">';
+    
+      echo "<h1>"."UPDATED CSV FILE"."</h1>";
+      echo '<table>';
         $start_row = 1;
         if (($csv_file = fopen($this->phpFileTmp, "r")) !== FALSE) {
             while (($read_data = fgetcsv($csv_file, 1000, ",")) !== FALSE) {
@@ -50,6 +73,7 @@ class FileUploader
             fclose($csv_file);
         }
         echo '</table>';
+        $this->downloadCsv();
     }
 
     public function updateCsv($newData)
@@ -58,21 +82,38 @@ class FileUploader
         fputcsv($fp, $newData);
         fclose($fp);
     }
+
+    public function downloadCsv()
+{
+
+  header("Content-Description: File Transfer");
+        header("Content-Type: application/octet-stream");
+        header("Content-Disposition: attachment; filename=\"". $this->phpFileTmp . "\"");
+        echo "File downloaded successfully";
+
+
+        readfile($this->FileTemp);
+        exit(); 
+
 }
+    }
+
 
 if (isset($_POST['submit'])) {
     $phpFile = $_FILES['php-file']['name'];
-    // var_dump($phpFile);
     $phpFileTmp = $_FILES['php-file']['tmp_name'];
 
     $fileUploader = new FileUploader($phpFile, $phpFileTmp);
-    $fileUploader->displayTable();
+    // $fileUploader->displayTable();
 
-    $newData = array(4, 4, 4, 'Y', 1, 1, 1, 'M', 'AddedText');
+    $newData = array(4, 4, 4, 'Y', 1, 1, 1, 'M', 'AddedText', 'OH');
     $fileUploader->updateCsv($newData);
 
     $fileUploader = new FileUploader($phpFile, $phpFileTmp);
     $fileUploader->displayTable();
+
+    // $fileUploader->downloadCsv();
+    // $fileUploader->displayTable();
 
 }
 ?>
