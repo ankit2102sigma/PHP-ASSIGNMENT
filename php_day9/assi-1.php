@@ -15,7 +15,7 @@
 </head>
 <body>
   <h1>Upload PHP File</h1>
-  <form action="" method="GET" enctype="multipart/form-data">
+  <form action="" method="POST" enctype="multipart/form-data">
     <input type="file" id="php-file" name="php-file" accept=".csv" />
     <input type="submit" name="submit" value="Upload" />
   </form>
@@ -27,7 +27,7 @@ class FileUploader
     private $phpFile;
     private $phpFileTmp;
 
-    public function FileUploader($phpFile, $phpFileTmp)
+    public function __construct($phpFile, $phpFileTmp)
     {
         $this->phpFile = $phpFile;
         $this->phpFileTmp = $phpFileTmp;
