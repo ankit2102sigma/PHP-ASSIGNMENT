@@ -15,7 +15,7 @@
 </head>
 <body>
   <h1>Upload PHP File</h1>
-  <form action="" method="POST" enctype="multipart/form-data">
+  <form action="" method="GET" enctype="multipart/form-data">
     <input type="file" id="php-file" name="php-file" accept=".csv" />
     <input type="submit" name="submit" value="Upload" />
   </form>
@@ -62,7 +62,7 @@ class FileUploader
 
 if (isset($_POST['submit'])) {
     $phpFile = $_FILES['php-file']['name'];
-    var_dump($phpFile);
+    // var_dump($phpFile);
     $phpFileTmp = $_FILES['php-file']['tmp_name'];
 
     $fileUploader = new FileUploader($phpFile, $phpFileTmp);

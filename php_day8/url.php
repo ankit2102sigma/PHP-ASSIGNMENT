@@ -34,7 +34,7 @@
 
 <body>
   <div class="main">
-    <form method='POST' action="http://localhost/php_Assi/php_day8/assi-1.php">
+    <form method='POST' action="assi-1.php">
       <h2 style="text-align: center; text-decoration: underline;">Reading rss feed using php:</h2>
       <div class="container">
         <input style="width: 80%; padding: 10px;" type="text" name="name">
