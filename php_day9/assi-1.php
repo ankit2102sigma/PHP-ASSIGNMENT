@@ -13,7 +13,7 @@ class FileUploader
 
     public function displayTable()
 {
-    $destination = "/var/www/html/php_Assi/php_day9/upload/" . basename($this->phpFile);
+    $destination = "php_day9/upload/" . basename($this->phpFile);
     if (move_uploaded_file($this->phpFile, $destination)) {
         $this->phpFileTmp = $destination;
         echo "<h1>"."UPDATED CSV FILE"."</h1>";
