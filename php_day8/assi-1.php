@@ -44,24 +44,14 @@ class RssFeed {
 
         $rss_feed = simplexml_load_file($this->url);
 
-            // if ($rss_feed === false) {
-            //     echo "Failed loading RSS feed\n";
-            //     foreach(libxml_get_errors() as $error) {
-            //         echo "\t", $error->message;
-            //     }
-            // }else if($rss_feed===""){
-            //         echo "";
-                
-            // } else {
              echo "<div class=  'container'>";
                  if(isset($rss_feed->channel)){
-                      if($rss_feed->channel->item){
+                      if(isset($rss_feed->channel->item)){
                             foreach ($rss_feed->channel->item as $item) {
                               $title = (string) $item->title; 
                               $link   = (string) $item->link; 
                               $description =  $item->description;
                        
-                
                                 echo "<div class='item'";
                                     echo "<a href ='".$link."'><h1>".$title."</a></h1>";
                                         echo "<hr>";
