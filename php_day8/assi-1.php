@@ -35,9 +35,10 @@
 class RssFeed {
     private $url;
 
-    public function RssFeed($url) {
-        $this->url = $url;
-    }
+    public function __construct()
+    {
+        $this->url = $_POST['name'];;  
+    } 
 
     public function getFeed() {
         libxml_use_internal_errors(true);
@@ -52,6 +53,7 @@ class RssFeed {
                               $link   = (string) $item->link; 
                               $description =  $item->description;
                        
+                
                                 echo "<div class='item'";
                                     echo "<a href ='".$link."'><h1>".$title."</a></h1>";
                                         echo "<hr>";
@@ -71,8 +73,7 @@ class RssFeed {
                                 
     }
 }
-$url = $_POST['name'];
-$rss = new RssFeed($url);
+$rss = new RssFeed;
 $rss->getFeed();
 
 ?>
