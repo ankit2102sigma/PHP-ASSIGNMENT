@@ -24,6 +24,18 @@
      .desimg {
         font-size:28px;
      }
+     .heading{
+        display: flex;
+        align-items: center;
+        font-size: 80px;
+        justify-content: center;
+        background: black;
+        color: yellow;
+        height: 140px;
+        margin: 0px;
+        padding: 0px;
+     }
+
 
 </style>
 </head>
@@ -44,7 +56,9 @@ class RssFeed {
         libxml_use_internal_errors(true);
 
         $rss_feed = simplexml_load_file($this->url);
-
+        echo "<h1 class=  'heading'>";
+         echo "Lifehacker";
+         echo "</h1>";
              echo "<div class=  'container'>";
                  if(isset($rss_feed->channel)){
                       if(isset($rss_feed->channel->item)){
